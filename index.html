@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- EDIT HERE: Page title shown in the browser tab -->
+<title>Winson Sovian — QA Engineer</title>
+<!-- EDIT HERE: Short description for search engines / link previews -->
+<meta name="description" content="Portfolio of Winson Sovian — QA Engineer specializing in software testing, automation, and security." />
+<meta name="author" content="Winson Sovian" />
+<meta name="theme-color" content="#0a0b0d" />
+
+<!-- Social link preview (Open Graph + Twitter) -->
+<!-- EDIT HERE: after deploying, set og:url and make og:image an absolute URL, e.g. https://yourdomain.com/winson.jpg -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Winson Sovian — QA Engineer" />
+<meta property="og:description" content="Informatics student at UMN focused on software testing, automation, and security-minded quality assurance." />
+<meta property="og:image" content="winson.jpg" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Winson Sovian — QA Engineer" />
+<meta name="twitter:description" content="Informatics student at UMN focused on software testing, automation, and security-minded quality assurance." />
+<meta name="twitter:image" content="winson.jpg" />
+
+<!-- Favicon (inline SVG monogram — no extra file needed) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%230a0b0d'/%3E%3Ctext%20x='50'%20y='71'%20font-size='62'%20font-weight='700'%20fill='%232dd4bf'%20text-anchor='middle'%20font-family='Arial,Helvetica,sans-serif'%3EW%3C/text%3E%3C/svg%3E" />
+
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     THEME TOKENS  —  EDIT HERE to recolor the whole site
+     ========================================================= */
+  :root {
+    --bg:        #0a0b0d;   /* page background */
+    --bg-soft:   #101216;   /* alternating sections */
+    --surface:   #15181d;   /* cards */
+    --surface-2: #1b1f25;   /* hover / inputs */
+    --border:    #262b33;   /* hairlines */
+    --text:      #e9eaee;   /* primary text */
+    --muted:     #9aa0ab;   /* secondary text */
+    --faint:     #6b7280;   /* tertiary text */
+    --accent:    #2dd4bf;   /* TEAL accent */
+    --accent-2:  #14b8a6;   /* darker teal */
+    --accent-ink:#04201d;   /* text on accent */
+    --radius:    16px;
+    --maxw:      1080px;
+    --ease:      cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  .accent { color: var(--accent); }
+
+  section { padding: 110px 0; position: relative; }
+  .section-soft { background: var(--bg-soft); }
+
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); opacity: .7; }
+
+  h2.title { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -.02em; margin-bottom: 16px; }
+  .section-intro { color: var(--muted); max-width: 560px; margin-bottom: 56px; font-size: 17px; }
+
+  /* ---------- NAVBAR ---------- */
+  header.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,11,13,.65);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s var(--ease), background .3s var(--ease);
+  }
+  header.nav.scrolled { border-bottom-color: var(--border); background: rgba(10,11,13,.85); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { font-weight: 700; letter-spacing: -.02em; font-size: 18px; }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a {
+    font-size: 15px; color: var(--muted); font-weight: 500; position: relative;
+    transition: color .25s var(--ease);
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+    background: var(--accent); transition: width .3s var(--ease);
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-cta {
+    border: 1px solid var(--border); padding: 9px 18px; border-radius: 999px;
+    color: var(--text) !important; font-weight: 600;
+    transition: border-color .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+  }
+  .nav-cta:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-ink) !important; }
+  .nav-cta::after { display: none; }
+
+  .burger { display: none; background: none; border: 0; cursor: pointer; width: 30px; height: 24px; position: relative; }
+  .burger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--text); transition: .3s var(--ease); }
+  .burger span:nth-child(1) { top: 2px; } .burger span:nth-child(2) { top: 11px; } .burger span:nth-child(3) { top: 20px; }
+  .burger.open span:nth-child(1) { top: 11px; transform: rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { top: 11px; transform: rotate(-45deg); }
+
+  /* ---------- HERO ---------- */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 68px; }
+  .hero-glow {
+    position: absolute; top: -10%; right: -5%; width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(45,212,191,.16), transparent 62%);
+    filter: blur(20px); pointer-events: none; z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; width: 100%; }
+  .hero .status {
+    display: inline-flex; align-items: center; gap: 9px; font-size: 14px; color: var(--muted);
+    border: 1px solid var(--border); padding: 7px 15px; border-radius: 999px; margin-bottom: 30px; background: var(--surface);
+  }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(45,212,191,.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(45,212,191,.55); } 70% { box-shadow: 0 0 0 10px rgba(45,212,191,0); } 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0); } }
+
+  .hero h1 { font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; font-weight: 800; letter-spacing: -.03em; margin-bottom: 22px; max-width: 960px; }
+  .hero h1 .grad { background: linear-gradient(120deg, var(--accent), #7af0e0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { font-size: clamp(17px, 2.2vw, 21px); color: var(--muted); max-width: 880px; margin-bottom: 40px; text-align: justify; text-justify: inter-word; }
+
+  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px;
+    padding: 14px 26px; border-radius: 999px; cursor: pointer; border: 1px solid transparent;
+    transition: transform .2s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(45,212,191,.55); }
+  .btn-ghost { border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn svg { width: 17px; height: 17px; }
+
+
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: start; }
+  .photo-frame { position: relative; }
+  .photo-frame img {
+    width: 280px; height: 280px; object-fit: cover; border-radius: 24px;
+    border: 1px solid var(--border); filter: grayscale(.15);
+    transition: filter .4s var(--ease), transform .4s var(--ease);
+  }
+  .photo-frame:hover img { filter: grayscale(0); transform: translateY(-4px); }
+  .photo-frame::after {
+    content: ""; position: absolute; inset: 14px -14px -14px 14px; border-radius: 24px;
+    border: 1px solid var(--accent); opacity: .35; z-index: -1;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 18px; font-size: 17px; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+
+  .skills-head { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin: 30px 0 16px; font-weight: 600; }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge {
+    font-size: 14px; font-weight: 500; padding: 8px 15px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease), background .2s var(--ease);
+  }
+  .badge:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .edu-head { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin: 30px 0 14px; font-weight: 600; }
+  .edu-card { display: flex; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; transition: border-color .25s var(--ease), transform .25s var(--ease); }
+  .edu-card:hover { border-color: #34404a; transform: translateY(-2px); }
+  .edu-card .ec-ico { width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--border); color: var(--accent); flex-shrink: 0; }
+  .edu-card .ec-ico svg { width: 22px; height: 22px; }
+  .edu-card h4 { font-size: 16px; font-weight: 650; letter-spacing: -.01em; }
+  .edu-card .ec-org { font-size: 14px; color: var(--muted); display: block; margin-top: 2px; }
+  .edu-card .ec-meta { font-size: 13px; color: var(--faint); display: block; margin-top: 4px; }
+
+  /* ---------- PROJECTS ---------- */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease);
+  }
+  .card:hover { transform: translateY(-6px); border-color: #34404a; box-shadow: 0 22px 40px -22px rgba(0,0,0,.7); }
+  .card:hover::before { transform: scaleX(1); }
+  .card .ico {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--accent); margin-bottom: 20px;
+  }
+  .card .ico svg { width: 22px; height: 22px; }
+  .card-media { display: block; width: calc(100% + 56px); margin: -28px -28px 22px; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, #1b1f25, #15181d); position: relative; }
+  .card-media img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform .5s var(--ease); }
+  .card:hover .card-media img { transform: scale(1.04); }
+  .card-media .cm-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: var(--accent); }
+  .card-media img + .cm-fallback { display: none; }
+  .card-eye { position: absolute; top: 14px; right: 14px; z-index: 3; width: 38px; height: 38px; padding: 0; cursor: pointer; border-radius: 10px; display: grid; place-items: center; background: rgba(10,11,13,.55); backdrop-filter: blur(6px); border: 1px solid var(--border); color: #fff; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease); }
+  .card-eye:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); transform: translateY(-2px) scale(1.05); }
+  .card-eye svg { width: 18px; height: 18px; }
+
+  /* ---------- PROJECT DETAIL MODAL ---------- */
+  body.no-scroll { overflow: hidden; }
+  .modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(5,6,8,.74); backdrop-filter: blur(5px); cursor: zoom-out; }
+  .modal-card { position: relative; z-index: 1; width: 100%; max-width: 940px; max-height: 90vh; overflow-y: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 40px 90px -30px rgba(0,0,0,.85); animation: modalIn .32s var(--ease); }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+  .modal-close { position: absolute; top: 14px; right: 14px; z-index: 4; width: 42px; height: 42px; padding: 0; cursor: pointer; border-radius: 11px; display: grid; place-items: center; background: rgba(10,11,13,.6); backdrop-filter: blur(6px); border: 1px solid var(--border); color: #fff; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .25s var(--ease); }
+  .modal-close:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); transform: rotate(90deg); }
+  .modal-close svg { width: 20px; height: 20px; }
+  .modal-media { width: 100%; background: linear-gradient(135deg, #1b1f25, #15181d); border-bottom: 1px solid var(--border); border-radius: 20px 20px 0 0; overflow: hidden; }
+  .modal-media img { width: 100%; max-height: 62vh; object-fit: contain; display: block; }
+  .modal-body { padding: 30px 34px 34px; }
+  .modal-body h3 { font-size: clamp(22px, 3vw, 27px); font-weight: 700; letter-spacing: -.02em; margin-bottom: 14px; }
+  .modal-body .tags { margin-bottom: 20px; }
+  .modal-body p { color: var(--muted); font-size: 16px; line-height: 1.75; margin-bottom: 26px; }
+  @media (max-width: 600px) { .modal-body { padding: 24px 22px 28px; } .modal-media img { max-height: 44vh; } }
+  .card h3 { font-size: 19px; font-weight: 650; margin-bottom: 10px; letter-spacing: -.01em; }
+  .card p.desc { color: var(--muted); font-size: 15px; margin-bottom: 20px; flex-grow: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+  .tag { font-size: 12px; font-weight: 500; color: var(--accent); background: rgba(45,212,191,.08); border: 1px solid rgba(45,212,191,.22); padding: 4px 10px; border-radius: 6px; }
+  .card-link { font-size: 14px; font-weight: 600; color: var(--text); display: inline-flex; align-items: center; gap: 7px; transition: gap .2s var(--ease), color .2s var(--ease); }
+  .card-link:hover { color: var(--accent); gap: 11px; }
+  .card-link svg { width: 15px; height: 15px; }
+
+  /* ---------- EXPERIENCE / CERTIFICATIONS ---------- */
+  .timeline { position: relative; max-width: 760px; }
+  .timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+  .t-item { position: relative; padding-left: 44px; padding-bottom: 36px; }
+  .t-item:last-child { padding-bottom: 0; }
+  .t-item::before {
+    content: ""; position: absolute; left: 3px; top: 6px; width: 13px; height: 13px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent); transition: background .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .t-item:hover::before { background: var(--accent); box-shadow: 0 0 0 5px rgba(45,212,191,.14); }
+  .t-meta { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .t-meta .date { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
+  .t-item h3 { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+  .t-item .org { font-size: 14px; color: var(--faint); }
+  .t-item p { font-size: 15px; color: var(--muted); margin-top: 6px; }
+  .t-item .score { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(45,212,191,.08); border: 1px solid rgba(45,212,191,.22); padding: 2px 8px; border-radius: 5px; margin-top: 8px; }
+  .t-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--text); transition: gap .2s var(--ease), color .2s var(--ease); }
+  .t-link:hover { color: var(--accent); gap: 11px; }
+  .t-link svg { width: 14px; height: 14px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .contact-aside p { color: var(--muted); font-size: 17px; margin-bottom: 28px; max-width: 420px; }
+  .contact-list { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; color: var(--text); font-size: 15px; font-weight: 500; transition: color .2s var(--ease); }
+  .contact-item:hover { color: var(--accent); }
+  .contact-item .ci { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--border); color: var(--accent); flex-shrink: 0; }
+  .contact-item .ci svg { width: 18px; height: 18px; }
+  .contact-item .ci-l { font-size: 12px; color: var(--faint); display: block; font-weight: 500; }
+
+  form { display: flex; flex-direction: column; gap: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 7px; }
+  .field input, .field textarea {
+    width: 100%; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 13px 15px; color: var(--text); font-family: inherit; font-size: 15px; resize: vertical;
+    transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,212,191,.14); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--faint); }
+  .field .err { font-size: 12px; color: #f87171; margin-top: 6px; display: none; }
+  .field.invalid input, .field.invalid textarea { border-color: #f8717188; }
+  .field.invalid .err { display: block; }
+  form .btn-primary { justify-content: center; margin-top: 4px; }
+  .form-note { font-size: 13px; color: var(--faint); text-align: center; }
+  .form-success { display: none; background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.3); color: var(--accent); padding: 13px 16px; border-radius: 12px; font-size: 14px; font-weight: 500; text-align: center; }
+  .form-success.error { background: rgba(248,113,113,.1); border-color: rgba(248,113,113,.35); color: #f87171; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--border); padding: 34px 0; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .foot-inner .copy { font-size: 14px; color: var(--faint); }
+  .foot-social { display: flex; gap: 10px; }
+  .foot-social a { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); transition: .25s var(--ease); }
+  .foot-social a:hover { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+  .foot-social a svg { width: 18px; height: 18px; }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.show { opacity: 1; transform: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .photo-frame { justify-self: start; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 720px) {
+    section { padding: 80px 0; }
+    .nav-links {
+      position: fixed; top: 68px; left: 0; right: 0; flex-direction: column; align-items: flex-start;
+      gap: 0; background: var(--bg-soft); border-bottom: 1px solid var(--border);
+      padding: 8px 24px 20px; transform: translateY(-130%); transition: transform .35s var(--ease); height: auto;
+    }
+    .nav-links.open { transform: translateY(0); }
+    .nav-links a { width: 100%; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .nav-links a:last-child { border-bottom: 0; }
+    .nav-cta { width: 100%; text-align: center; margin-top: 8px; }
+    .burger { display: block; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <!-- EDIT HERE: brand / your initials or name -->
+    <a href="#home" class="brand">Winson Sovian</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact" class="nav-cta">Let's talk</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="wrap hero-inner">
+    <span class="status reveal"><span class="pulse"></span> Open to work · Tangerang (On-site / Hybrid)</span>
+    <!-- EDIT HERE: name + headline -->
+    <h1 class="reveal">Hi, I'm Winson Sovian.<br />Informatics undergraduate &amp; <span class="grad">QA enthusiast</span> who breaks things on purpose.</h1>
+    <!-- EDIT HERE: one or two line tagline -->
+    <p class="lead reveal">Informatics student at Universitas Multimedia Nusantara, focused on software testing, test automation, and security-minded quality assurance — making sure software works the way it should, and fails the way it shouldn't.</p>
+    <div class="btn-row reveal">
+      <a href="#projects" class="btn btn-primary">
+        View My Work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-ghost">
+        Contact Me
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+      </a>
+      <!-- EDIT HERE: link points to your CV file in this folder -->
+      <a href="CV%20Winson.pdf" class="btn btn-ghost" download target="_blank" rel="noopener">
+        Download CV
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section-soft" id="about">
+  <div class="wrap">
+    <span class="eyebrow reveal">About</span>
+    <h2 class="title reveal">A tester's eye, a builder's hands.</h2>
+    <div class="about-grid">
+      <div class="photo-frame reveal">
+        <!-- EDIT HERE: replace winson.jpg with your own photo (keep it in the same folder) -->
+        <img src="winson.jpg" alt="Winson Sovian" />
+      </div>
+      <div class="about-text reveal">
+        <!-- EDIT HERE: your bio -->
+        <p>I'm an <strong>Informatics undergraduate at Universitas Multimedia Nusantara</strong> and a Quality Assurance enthusiast, based in Tangerang, Indonesia. I believe great software is judged by what it does under pressure, not just on the happy path — so my focus sits at the intersection of testing, automation, and security, finding the edge cases before users do.</p>
+        <p>I've trained through structured QA and penetration-testing programs, and I enjoy turning messy requirements into clear, repeatable test cases. Outside of testing, I lead a team of peer counselors as <strong>Head of Konselor Sebaya Gen 10 at UMN</strong> — work that's sharpened how I communicate, coordinate, and ship things that matter to people.</p>
+        <div class="skills-head">Skills</div>
+        <!-- EDIT HERE: add / remove skill badges -->
+        <div class="badges">
+          <span class="badge">QA / Software Testing</span>
+          <span class="badge">Manual Testing</span>
+          <span class="badge">Test Case Design</span>
+          <span class="badge">Bug Reporting</span>
+          <span class="badge">API Testing</span>
+          <span class="badge">Penetration Testing</span>
+          <span class="badge">Network Security</span>
+          <span class="badge">Agile Web Development</span>
+          <span class="badge">App Development</span>
+          <span class="badge">Python</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">ReactJS</span>
+          <span class="badge">Java</span>
+          <span class="badge">Kotlin</span>
+          <span class="badge">C#</span>
+          <span class="badge">C / C++</span>
+          <span class="badge">PHP / Laravel</span>
+          <span class="badge">MySQL</span>
+        </div>
+
+        <div class="skills-head">Tools</div>
+        <!-- EDIT HERE: add / remove tool badges -->
+        <div class="badges">
+          <span class="badge">VS Code</span>
+          <span class="badge">Visual Studio</span>
+          <span class="badge">Android Studio</span>
+          <span class="badge">Jupyter Notebook</span>
+          <span class="badge">CodeBlocks</span>
+          <span class="badge">XAMPP</span>
+          <span class="badge">Laragon</span>
+          <span class="badge">phpMyAdmin</span>
+          <span class="badge">SQL Server Mgmt Studio</span>
+          <span class="badge">Postman</span>
+          <span class="badge">Jira</span>
+          <span class="badge">Figma</span>
+          <span class="badge">Unity</span>
+          <span class="badge">VMware</span>
+          <span class="badge">VirtualBox</span>
+          <span class="badge">Microsoft Office</span>
+        </div>
+
+        <!-- EDIT HERE: education -->
+        <div class="edu-head">Education</div>
+        <div class="edu-card">
+          <span class="ec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 2.8 6 2.8s6-1.3 6-2.8v-5"/></svg></span>
+          <div>
+            <h4>B.Sc. Informatics</h4>
+            <span class="ec-org">Universitas Multimedia Nusantara — Tangerang, Indonesia</span>
+            <span class="ec-meta">Aug 2023 — Expected Sep 2027 · CGPA 3.28 / 4.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow reveal">Projects</span>
+    <h2 class="title reveal">Selected work.</h2>
+    <p class="section-intro reveal">A mix of things I've shipped and tested — from live products to QA practice work.</p>
+    <div class="cards">
+
+      <!-- PROJECT 1 — real: Emora (with live homepage preview) -->
+      <article class="card reveal">
+        <button type="button" class="card-eye" data-i="0" aria-label="View details" title="View details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <!-- EDIT HERE: Emora homepage preview — swap emora-preview.png with a new screenshot to update it -->
+        <div class="card-media">
+          <img src="emora-preview.png" alt="Emora website homepage preview" loading="lazy" onerror="this.remove()" />
+          <div class="cm-fallback">Emora.</div>
+        </div>
+        <!-- EDIT HERE: project title + description + tags + link -->
+        <h3>Emora</h3>
+        <p class="desc">A self-discovery and emotional-wellness platform for peer counselors (Konselor Sebaya). I contributed to building and quality-checking the web experience end to end.</p>
+        <div class="tags"><span class="tag">Web App</span><span class="tag">React</span><span class="tag">UX</span><span class="tag">QA Testing</span></div>
+        <a class="card-link" href="https://emora-konseb.vercel.app" target="_blank" rel="noopener">Visit live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </article>
+
+      <!-- PROJECT 2 — real: Emora QA test case specification -->
+      <article class="card reveal">
+        <button type="button" class="card-eye" data-i="1" aria-label="View details" title="View details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <!-- EDIT HERE: QA sheet preview — swap emora-qa-preview.png to update it -->
+        <div class="card-media">
+          <img src="emora-qa-preview.png" alt="Emora QA test case specification preview" loading="lazy" onerror="this.remove()" />
+          <div class="cm-fallback">QA Test Cases</div>
+        </div>
+        <!-- EDIT HERE: project title + description + tags + link -->
+        <h3>Emora — QA Test Case Specification</h3>
+        <p class="desc">A manual QA test plan for the Emora platform: 95 test cases across 17 modules — authentication, security &amp; access, journaling, archetype quiz, XP &amp; gamification, session logs, and the admin panel. Each case documents steps, expected vs. actual results, priority, and pass/fail status, run across desktop &amp; mobile on a Next.js 14 build.</p>
+        <div class="tags"><span class="tag">Manual Testing</span><span class="tag">Test Cases</span><span class="tag">QA</span><span class="tag">Next.js</span></div>
+        <a class="card-link" href="https://docs.google.com/spreadsheets/d/1vImsHHFEYh11avoh27mai8y6G1FQsd2Hzk3HAVvfILY/edit?usp=sharing" target="_blank" rel="noopener">View test cases <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </article>
+
+      <!-- PROJECT 3 — real: network penetration testing report -->
+      <article class="card reveal">
+        <button type="button" class="card-eye" data-i="2" aria-label="View details" title="View details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <!-- EDIT HERE: pentest preview — swap pentest-preview.png to update it -->
+        <div class="card-media">
+          <img src="pentest-preview.png" alt="Network penetration test — Nmap scan output" loading="lazy" onerror="this.remove()" />
+          <div class="cm-fallback">Pentest</div>
+        </div>
+        <!-- EDIT HERE: project title + description + tags + link -->
+        <h3>Network Penetration Test — Kioptrix 1.3</h3>
+        <p class="desc">A full black-box penetration test of a vulnerable Linux host in a VMware lab. Identified and chained 7 findings (3 critical) — from a Samba RCE (CVE-2003-0201) to SQL injection and MySQL privilege escalation — to gain full root access, documented in an ISO/IEC 27001-aligned report with impact analysis and remediation.</p>
+        <div class="tags"><span class="tag">Nmap</span><span class="tag">SMB / Samba</span><span class="tag">Privilege Escalation</span><span class="tag">ISO 27001</span></div>
+        <a class="card-link" href="Network%20Penetration%20Testing%20Report.pdf" target="_blank" rel="noopener">Read the report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </article>
+
+      <!-- PROJECT 4 — real: FindMe UI/UX (Figma) -->
+      <article class="card reveal">
+        <button type="button" class="card-eye" data-i="3" aria-label="View details" title="View details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <!-- EDIT HERE: FindMe preview — swap findme-poster.jpeg to update it -->
+        <div class="card-media">
+          <img src="findme-poster.jpeg" alt="FindMe UI/UX design poster" loading="lazy" onerror="this.remove()" />
+          <div class="cm-fallback">FindMe</div>
+        </div>
+        <!-- EDIT HERE: project title + description + tags + link -->
+        <h3>FindMe — UI/UX Design</h3>
+        <p class="desc">UI/UX design for "FindMe", a lost-and-found mobile app. I designed intuitive layouts for the Home, Add Report, and User Profile screens in Figma, with a seamless flow and a consistent visual system across the app.</p>
+        <div class="tags"><span class="tag">Figma</span><span class="tag">UI/UX</span><span class="tag">Prototyping</span><span class="tag">Mobile</span></div>
+        <a class="card-link" href="https://www.figma.com/design/qP4FUbTNgivZWHGJFW304X/FIND-ME?node-id=2126-2199&p=f" target="_blank" rel="noopener">Open Figma mockup <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE & EDUCATION ============ -->
+<section class="section-soft" id="experience">
+  <div class="wrap">
+    <span class="eyebrow reveal">Experience</span>
+    <h2 class="title reveal">What I've been doing.</h2>
+    <p class="section-intro reveal">Leadership and organizational roles I've taken on.</p>
+    <div class="timeline">
+
+      <!-- EDIT HERE: each <div class="t-item"> is one role -->
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jan 2026 — Present</span></div>
+        <h3>Head of Peer Counselor</h3>
+        <span class="org">Konselor Sebaya Gen 10 — Universitas Multimedia Nusantara</span>
+        <p>Lead Peer Counselor Generation 10 at UMN — running peer-counseling activities, delivering educational sessions, coordinating meetings, and overseeing counselor-team responsibilities to support students' academic and personal well-being.</p>
+        <span class="score">Leadership · Communication · Teamwork</span>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jun 2025 — Dec 2025</span></div>
+        <h3>Fresh Money Division</h3>
+        <span class="org">SAA UMN 2025 — Student Association Awards Event</span>
+        <p>Managed violation-fine records and financial recaps, and coordinated with vendors for paid promotions and partnership collaborations.</p>
+        <span class="score">Financial Recording · Vendor Coordination · Partnerships</span>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jan 2025 — Dec 2025</span></div>
+        <h3>Secretary</h3>
+        <span class="org">Konselor Sebaya Gen 9 — Universitas Multimedia Nusantara</span>
+        <p>Coordinated meeting operations — activity scheduling, session planning, attendance management, logistics, and internal communication — to keep the organization running smoothly.</p>
+        <span class="score">Coordination · Administration · Communication</span>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Sep 2024 — Nov 2024</span></div>
+        <h3>Coordinator, Security &amp; Equipment</h3>
+        <span class="org">Alive 10.0 — Health Organization Event at UMN</span>
+        <p>Managed venue preparation, equipment coordination, security arrangements, and event regulations to ensure operational compliance throughout the event.</p>
+        <span class="score">Event Operations · Coordination · Risk Management</span>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jan 2024 — Sep 2024</span></div>
+        <h3>Medical Division</h3>
+        <span class="org">OMB UMN 2024 — New Student Orientation</span>
+        <p>Provided first-aid support and assisted participants with medical needs to keep new students safe and comfortable during the orientation event.</p>
+        <span class="score">First Aid · Teamwork · Responsiveness</span>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Nov 2023 — Dec 2024</span></div>
+        <h3>Member</h3>
+        <span class="org">UMN Medical Center · Contract</span>
+        <p>Served as a member of the UMN Medical Center, supporting campus health services and providing first-aid assistance for students during on-campus activities and events.</p>
+        <span class="score">First Aid · Health Services · Teamwork</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section id="certs">
+  <div class="wrap">
+    <span class="eyebrow reveal">Certifications &amp; Training</span>
+    <h2 class="title reveal">Where I've leveled up.</h2>
+    <p class="section-intro reveal">Programs and courses I've completed across QA, security, and software engineering.</p>
+    <div class="timeline">
+
+      <!-- EDIT HERE: each <div class="t-item"> is one certification. The href points to the certificate file sitting in this same folder. -->
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jan 2026</span></div>
+        <h3>Network Penetration Testing — Mini Bootcamp (Batch 1)</h3>
+        <span class="org">Codelamp Indonesia</span>
+        <p>Reconnaissance, OSINT, network scanning, service enumeration, exploitation, and privilege escalation fundamentals.</p>
+        <span class="score">Passed · 91.75 / 100 · "Mastered"</span><br />
+        <a class="t-link" href="Codelamp%20-%20Network%20Penetration%20Testing.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Jan 2026</span></div>
+        <h3>Introduction to Information Security</h3>
+        <span class="org">Online Course · PKMI</span>
+        <p>Core information-security concepts, threats, and defensive principles.</p>
+        <a class="t-link" href="Certificate-of-Completion-Introduction-to-Information-Security.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Dec 2025</span></div>
+        <h3>Introduction to Cybersecurity</h3>
+        <span class="org">Cisco Networking Academy</span>
+        <p>Threats, vulnerabilities, attack vectors, and cyber-defense foundations.</p>
+        <a class="t-link" href="I2CSUpdate20251228-30-rn41y0.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">2025</span></div>
+        <h3>Quality Assurance Class — Certificate of Competence</h3>
+        <span class="org">Habiskerja</span>
+        <p>Types of testing, QA workflows, and integrating quality checks into a CI/CD pipeline to ship reliable products.</p>
+        <a class="t-link" href="Winson-Sovian-Kelas-Quality-Assurance-Sertifikat-Kelas-QA-Habiskerja.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">2025</span></div>
+        <h3>HCIA-AI V3.5 Course</h3>
+        <span class="org">Huawei</span>
+        <p>Foundations of artificial intelligence, machine learning, and the AI development lifecycle.</p>
+        <a class="t-link" href="HCIA-AI%20V3.5%20Course.png" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">2025</span></div>
+        <h3>openGauss Database</h3>
+        <span class="org">Huawei</span>
+        <p>Relational database fundamentals and hands-on work with the openGauss engine.</p>
+        <a class="t-link" href="Huawei%20OpenGauss.png" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">May 2025</span></div>
+        <h3>Python (Intermediate)</h3>
+        <span class="org">Sololearn</span>
+        <p>Object-oriented programming, data structures, and intermediate problem-solving in Python.</p>
+        <a class="t-link" href="Python%20Intermediate.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">Mar 2025</span></div>
+        <h3>Introduction to Python</h3>
+        <span class="org">Sololearn</span>
+        <p>Python fundamentals — syntax, control flow, and writing clean, testable code.</p>
+        <a class="t-link" href="Introduction%20to%20Python.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-meta"><span class="date">2025</span></div>
+        <h3>Information Literacy Training (Grade A)</h3>
+        <span class="org">Universitas Multimedia Nusantara</span>
+        <p>Critical evaluation of information and digital-literacy soft skills.</p>
+        <a class="t-link" href="Certificate_Of_Information_Literacy%20%281%29.pdf" target="_blank" rel="noopener">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-soft" id="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span>
+    <h2 class="title reveal">Let's build something reliable.</h2>
+    <div class="contact-grid">
+      <div class="contact-aside reveal">
+        <p>Have a role, a project, or a bug that needs a sharp eye? Send a message — I usually reply within a day.</p>
+        <div class="contact-list">
+          <!-- EDIT HERE: email -->
+          <a class="contact-item" href="mailto:winsonsovian2@gmail.com">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span>
+            <span><span class="ci-l">Email</span>winsonsovian2@gmail.com</span>
+          </a>
+          <a class="contact-item" href="CV%20Winson.pdf" download target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6M9.5 14.5L12 17l2.5-2.5"/></svg></span>
+            <span><span class="ci-l">Resume</span>Download CV (PDF)</span>
+          </a>
+          <!-- EDIT HERE: replace with your real GitHub username -->
+          <a class="contact-item" href="https://github.com/MiuChevy" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></span>
+            <span><span class="ci-l">GitHub</span>github.com/MiuChevy</span>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/winsonsovian/" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V8h3zM6.5 6.7a1.8 1.8 0 110-3.5 1.8 1.8 0 010 3.5zM19 19h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V19h-3V8h2.9v1.5h.04c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7z"/></svg></span>
+            <span><span class="ci-l">LinkedIn</span>linkedin.com/in/winsonsovian</span>
+          </a>
+          <div class="contact-item" style="cursor:default">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-7-10a7 7 0 0114 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
+            <span><span class="ci-l">Location</span>Tangerang, Banten, Indonesia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form (front-end validation only — wire to a backend/Formspree to actually send) -->
+      <form id="contactForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" />
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" />
+          <span class="err">Please enter a valid email.</span>
+        </div>
+        <div class="field" id="f-message">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or role..."></textarea>
+          <span class="err">Please enter a message.</span>
+        </div>
+        <!-- Hidden helpers for Formspree -->
+        <input type="hidden" name="_subject" value="New message from your portfolio" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+        <button type="submit" class="btn btn-primary">
+          Send message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+        </button>
+        <p class="form-note">Sent securely via Formspree — I usually reply within a day.</p>
+        <div class="form-success" id="formSuccess"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot-inner">
+    <!-- EDIT HERE: footer name / year -->
+    <span class="copy">© <span id="year"></span> Winson Sovian — Built with care.</span>
+    <div class="foot-social">
+      <a href="https://github.com/MiuChevy" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="https://www.linkedin.com/in/winsonsovian/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V8h3zM6.5 6.7a1.8 1.8 0 110-3.5 1.8 1.8 0 010 3.5zM19 19h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V19h-3V8h2.9v1.5h.04c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7z"/></svg></a>
+      <a href="mailto:winsonsovian2@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ PROJECT DETAIL MODAL ============ -->
+<div class="modal" id="projectModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-close" type="button" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-media" id="mMedia"><img id="mImg" src="" alt="" /></div>
+    <div class="modal-body">
+      <h3 id="mTitle"></h3>
+      <div class="tags" id="mTags"></div>
+      <p id="mDesc"></p>
+      <a id="mLink" class="btn btn-primary" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---- Current year ----
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Navbar shadow on scroll ----
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ---- Mobile menu ----
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); navLinks.classList.remove('open');
+  }));
+
+  // ---- Scroll reveal ----
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  // ---- Active nav link on scroll (scroll-spy) ----
+  const sections = ['home','about','projects','experience','certs','contact'];
+  const links = [...document.querySelectorAll('.nav-links a')];
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
+  // ---- Contact form validation ----
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const setInvalid = (id, bad) => document.getElementById(id).classList.toggle('invalid', bad);
+
+  // EDIT HERE: create a free form at https://formspree.io (New Form) and paste its endpoint below,
+  // e.g. 'https://formspree.io/f/abcdwxyz'. Until you do, the form runs in preview mode.
+  const FORM_ENDPOINT = 'https://formspree.io/f/xbdeokpe';
+
+  function showStatus(msg, isError) {
+    success.textContent = msg;
+    success.classList.toggle('error', !!isError);
+    success.style.display = 'block';
+    clearTimeout(showStatus._t);
+    showStatus._t = setTimeout(() => { success.style.display = 'none'; }, 6000);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    setInvalid('f-name', !name);
+    setInvalid('f-email', !emailOk);
+    setInvalid('f-message', !message);
+    if (!(name && emailOk && message)) return;
+
+    // Preview mode until a real Formspree endpoint is set
+    if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) {
+      showStatus('Preview mode — add your Formspree ID to actually send. (Your message validated fine!)', false);
+      form.reset();
+      return;
+    }
+
+    const original = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        showStatus('Thanks! Your message has been sent — I\'ll get back to you soon.', false);
+        form.reset();
+      } else {
+        showStatus('Hmm, that didn\'t go through. Please email me directly instead.', true);
+      }
+    } catch (err) {
+      showStatus('Network error — please email me directly instead.', true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = original;
+    }
+  });
+  // Clear error styling as the user types
+  ['name','email','message'].forEach(id => {
+    form[id].addEventListener('input', () => document.getElementById('f-' + id).classList.remove('invalid'));
+  });
+
+  // ---- Project detail modal ----
+  // EDIT HERE: detailed content shown when the eye (view) icon is clicked
+  const PROJECTS = [
+    {
+      title: 'Emora — Peer Counselor Platform',
+      img: 'emora-preview.png',
+      tags: ['Web App', 'Next.js 14', 'UX', 'QA Testing'],
+      desc: `Emora (Empowering Minds through Openness, Respect, and Assistance) is a self-discovery and emotional-wellness platform for peer counselors (Konselor Sebaya) at UMN. Built on Next.js 14, it helps counselors build empathy, track emotional readiness, and create safer spaces — through an archetype quiz, emotional check-ins, journaling, reflection cards, readiness checks, an XP/gamification system with a leaderboard, and an admin panel. I contributed to building the web experience and led end-to-end quality assurance across the platform.`,
+      link: 'https://emora-konseb.vercel.app',
+      linkText: 'Visit live site'
+    },
+    {
+      title: 'Emora — QA Test Case Specification',
+      img: 'emora-qa-preview.png',
+      tags: ['Manual Testing', 'Test Cases', 'QA', 'Next.js'],
+      desc: `A manual QA Test Case Specification (v1.0) I authored as Quality Assurance for the Emora platform. It documents 95 test cases across 17 modules — Authentication, Security & Access, Member Dashboard, Emotional Check-in, Readiness Check, Journal, Quiz Archetype, Reflection Cards, XP & Gamification, Leaderboard, Assignments, Session Log, Admin (User Management & Monitoring), Settings & Profile, UI (Theme & Language), and Non-functional. Each case captures steps, expected vs. actual results, priority (High / Medium / Low), and pass / fail / blocked status, tested across Chrome, Edge, and Firefox on desktop and mobile.`,
+      link: 'https://docs.google.com/spreadsheets/d/1vImsHHFEYh11avoh27mai8y6G1FQsd2Hzk3HAVvfILY/edit?usp=sharing',
+      linkText: 'Open the spreadsheet'
+    },
+    {
+      title: 'Network Penetration Test — Kioptrix 1.3',
+      img: 'pentest-preview.png',
+      tags: ['Nmap', 'SMB / Samba', 'Privilege Escalation', 'ISO 27001'],
+      desc: `A full black-box penetration test of the Kioptrix Level 1.3 target in a VMware lab, following an ISO/IEC 27001-aligned methodology: information gathering (netdiscover, arp-scan), scanning and enumeration (Nmap), vulnerability analysis, exploitation, and privilege escalation. I identified and chained 7 findings (3 critical) — Samba Remote Code Execution (CVE-2003-0201), Anonymous SMB Access, SMB Misconfiguration, SQL Injection, Restricted Shell Bypass, MySQL Privilege Escalation, and Hidden Directory Exposure — to gain full root access, then documented impact analysis and remediation in a 39-page report.`,
+      link: 'Network%20Penetration%20Testing%20Report.pdf',
+      linkText: 'Open the full report (PDF)'
+    },
+    {
+      title: 'FindMe — UI/UX Design',
+      img: 'findme-poster.jpeg',
+      tags: ['Figma', 'UI/UX', 'Prototyping', 'Mobile'],
+      desc: `UI/UX design for "FindMe", a lost-and-found mobile application (college project, Feb–May 2025). I designed the user interface in Figma — building intuitive, user-friendly layouts for the Home page, Add Report feature, and User Profile section — while keeping a seamless user experience and a consistent design flow across the app.`,
+      link: 'https://www.figma.com/design/qP4FUbTNgivZWHGJFW304X/FIND-ME?node-id=2126-2199&p=f',
+      linkText: 'Open Figma mockup'
+    }
+  ];
+
+  const modal = document.getElementById('projectModal');
+  const mMedia = document.getElementById('mMedia');
+  const mImg = document.getElementById('mImg');
+  const mTitle = document.getElementById('mTitle');
+  const mTags = document.getElementById('mTags');
+  const mDesc = document.getElementById('mDesc');
+  const mLink = document.getElementById('mLink');
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+  mImg.onerror = function () { mMedia.style.display = 'none'; };
+
+  function openModal(i) {
+    const p = PROJECTS[i];
+    if (!p) return;
+    if (p.img) { mImg.src = p.img; mImg.alt = p.title + ' preview'; mMedia.style.display = 'block'; }
+    else { mImg.removeAttribute('src'); mMedia.style.display = 'none'; }
+    mTitle.textContent = p.title;
+    mTags.innerHTML = p.tags.map(t => '<span class="tag">' + t + '</span>').join('');
+    mDesc.textContent = p.desc;
+    mLink.href = p.link;
+    mLink.innerHTML = p.linkText + ' ' + arrow;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }
+  document.querySelectorAll('.card-eye').forEach(btn => btn.addEventListener('click', () => openModal(+btn.dataset.i)));
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+</script>
+</body>
+</html>

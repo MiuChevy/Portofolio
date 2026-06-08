@@ -1,0 +1,12 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Dependencies (not used by this static site)
+node_modules/
+
+# Unused duplicate CV (the live one is "CV Winson.pdf")
+Winson-Sovian-CV.pdf

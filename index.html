@@ -29,6 +29,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
+<!-- Typed.js for text animation -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
 <style>
   /* =========================================================
      THEME TOKENS  —  EDIT HERE to recolor the whole site
@@ -140,6 +143,22 @@
   .hero h1 { font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; font-weight: 800; letter-spacing: -.03em; margin-bottom: 22px; max-width: 960px; }
   .hero h1 .grad { background: linear-gradient(120deg, var(--accent), #7af0e0); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero p.lead { font-size: clamp(17px, 2.2vw, 21px); color: var(--muted); max-width: 880px; margin-bottom: 40px; text-align: justify; text-justify: inter-word; }
+
+  /* centered hero (image-style) */
+  .hero-centered { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero .hero-hello { font-size: clamp(20px, 3vw, 34px); color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+  .hero .hero-name {
+    font-size: clamp(46px, 8.5vw, 100px); line-height: 1.04; font-weight: 800; letter-spacing: -.03em; margin-bottom: 16px; max-width: 1000px;
+    background: linear-gradient(120deg, #ffffff, #cfeee6); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .hero-role {
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: clamp(20px, 3.6vw, 36px); font-weight: 600; color: var(--accent); margin-bottom: 32px; min-height: 1.4em;
+  }
+  .hero .hero-role .prompt { color: #6b7280; margin-right: 10px; }
+  .hero .hero-role .typed-cursor { color: var(--accent); }
+  .hero-centered p.lead { text-align: center; text-justify: auto; margin-left: auto; margin-right: auto; }
+  .hero-centered .btn-row { justify-content: center; }
 
   .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn {
@@ -345,12 +364,14 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
   <div class="hero-glow"></div>
-  <div class="wrap hero-inner">
+  <div class="wrap hero-inner hero-centered">
     <span class="status reveal"><span class="pulse"></span> Open to work · Tangerang (On-site / Hybrid)</span>
     <!-- EDIT HERE: name + headline -->
-    <h1 class="reveal">Hi, I'm Winson Sovian.<br />Informatics undergraduate &amp; <span class="grad">QA enthusiast</span> who breaks things on purpose.</h1>
+    <p class="hero-hello reveal">Hello, I am</p>
+    <h1 class="hero-name reveal">Winson Sovian</h1>
+    <p class="hero-role reveal"><span class="prompt">&gt;</span> <span class="typed"></span></p>
     <!-- EDIT HERE: one or two line tagline -->
-    <p class="lead reveal">Informatics student at Universitas Multimedia Nusantara, focused on software testing, test automation, and security-minded quality assurance — making sure software works the way it should, and fails the way it shouldn't.</p>
+    <p class="lead reveal">An Informatics undergraduate at Universitas Multimedia Nusantara based in Tangerang, interested in quality assurance, cyber security, and software engineering — building software, breaking it to find the edge cases, and making sure it holds up where it matters most.</p>
     <div class="btn-row reveal">
       <a href="#projects" class="btn btn-primary">
         View My Work
@@ -381,8 +402,8 @@
       </div>
       <div class="about-text reveal">
         <!-- EDIT HERE: your bio -->
-        <p>I'm an <strong>Informatics undergraduate at Universitas Multimedia Nusantara</strong> and a Quality Assurance enthusiast, based in Tangerang, Indonesia. I believe great software is judged by what it does under pressure, not just on the happy path — so my focus sits at the intersection of testing, automation, and security, finding the edge cases before users do.</p>
-        <p>I've trained through structured QA and penetration-testing programs, and I enjoy turning messy requirements into clear, repeatable test cases. Outside of testing, I lead a team of peer counselors as <strong>Head of Konselor Sebaya Gen 10 at UMN</strong> — work that's sharpened how I communicate, coordinate, and ship things that matter to people.</p>
+        <p>I'm an <strong>Informatics undergraduate at Universitas Multimedia Nusantara</strong>, based in Tangerang, Indonesia, with interests spanning quality assurance, cyber security, and software engineering. I believe great software is judged by what it does under pressure, not just on the happy path — so I like to build it, test it, and probe it for weaknesses, finding the edge cases before users do.</p>
+        <p>I've trained through structured QA and penetration-testing programs, and I enjoy turning messy requirements into clear, repeatable test cases. Alongside that, I lead a team of peer counselors as <strong>Head of Konselor Sebaya Gen 10 at UMN</strong> — work that's sharpened how I communicate, coordinate, and deliver things that matter to people.</p>
         <div class="skills-head">Skills</div>
         <!-- EDIT HERE: add / remove skill badges -->
         <div class="badges">
@@ -783,6 +804,17 @@
   document.querySelectorAll('.reveal').forEach((el, i) => {
     el.style.transitionDelay = (i % 4) * 70 + 'ms';
     io.observe(el);
+  });
+
+  // ---- Typed.js text animation ----
+  const typed = new Typed('.typed', {
+    strings: ['Quality Assurance.', 'Cyber Security.', 'Software Engineering.'],
+    typeSpeed: 80,
+    backSpeed: 45,
+    backDelay: 1400,
+    startDelay: 300,
+    loop: true,
+    cursorChar: '_',
   });
 
   // ---- Active nav link on scroll (scroll-spy) ----
